@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+<section>
+
+    <h1>{{ books.title }}</h1>
+    <span> <strong>{{ books.author }}</strong></span>
+    <span> <em>{{ books.nbPages }} pages</em></span>
+    <p>{{ books.resume }}</p>
+
+</section>
+
+{% endblock %}
