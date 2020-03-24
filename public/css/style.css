@@ -1,9 +1,15 @@
 body {
     box-sizing: border-box;
-    margin-left: 55px;
-    margin-top: 35px;
     padding: 0;
+    margin: 0;
     font-family: Raleway;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
 }
 
 h1 {
@@ -11,18 +17,29 @@ h1 {
     margin: 0;
 }
 
-p {
-    width: 400px;
-    text-align: justify;
-    margin-top: 15px;
-}
-
-div {
-    margin-bottom: 50px;
-}
 
 a {
     text-decoration: none;
     color: darkcyan;
     font-weight: bold;
+}
+
+p {
+    width: 900px;
+    text-align: justify;
+}
+
+.margin {
+    margin-bottom: 50px;
+}
+
+.delete {
+    color: #C82829;
+}
+
+.cover {
+    background-image: url("https://images.pexels.com/photos/1018136/pexels-photo-1018136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
 }

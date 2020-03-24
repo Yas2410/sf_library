@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block content %}
 
-<section>
+<section class="cover">
 
     {% for book in books %}
+    <div>
     <h1>{{ book.title }}</h1>
     <span> <strong>{{ book.author }}</strong></span>
     <span> <em>{{ book.nbPages }} pages</em></span>
     <p></br> {{ book.resume }}</p>
     <div><a href="{{ path ('book', {'id':book.id}) }}"> - Details - </a></div>
-    <div><a href="{{ path ('book_delete', {'id':book.id}) }}"> - Supprimer le livre - </a></div>
+    <div class="margin"><a class="delete" href="{{ path ('book_delete', {'id':book.id}) }}"> - Supprimer le livre - </a></div>
     {% endfor %}
+    </div>
 
 </section>
 
