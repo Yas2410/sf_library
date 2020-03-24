@@ -8,7 +8,7 @@
     <span> <strong>{{ book.author }}</strong></span>
     <span> <em>{{ book.nbPages }} pages</em></span>
     <p></br> {{ book.resume }}</p>
-    <div><a href="{{ path ('book', {'id': + 1 }) }}"> - Details - </a></div>
+    <div><a href="{{ path ('book', {'id':book.id}) }}"> - Details - </a></div>
     {% endfor %}
 
 </section>
