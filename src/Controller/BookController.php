@@ -104,6 +104,24 @@ class BookController extends AbstractController
         return new Response("Le livre a bien été supprimé de la BDD");
     }
 
+    //METTRE A JOUR UN ELEMENT DE LA BDD
+    /**
+     * @route("/book/update/{id}", name="book_update")
+     */
+    public function updateBook (
+        BookRepository $bookRepository,
+        EntityManagerInterface $entityManager,
+        $id
+    )
+    {
+        $book = $bookRepository->find ($id);
+        $book->setTitle("La Jeune Fille et La Nuit");
+        $entityManager->persist($book);
+        $entityManager->flush();
+        return new Response ('Le titre du livre a bien été modifié!');
+    }
+
+
 
 }
 
