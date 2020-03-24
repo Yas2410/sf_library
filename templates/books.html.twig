@@ -9,6 +9,7 @@
     <span> <em>{{ book.nbPages }} pages</em></span>
     <p></br> {{ book.resume }}</p>
     <div><a href="{{ path ('book', {'id':book.id}) }}"> - Details - </a></div>
+    <div><a href="{{ path ('book_delete', {'id':book.id}) }}"> - Supprimer le livre - </a></div>
     {% endfor %}
 
 </section>

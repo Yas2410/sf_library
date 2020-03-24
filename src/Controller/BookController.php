@@ -91,5 +91,19 @@ class BookController extends AbstractController
         return new Response("Le livre a bien été supprimé de la BDD");
     }
 
+    //Supprimer un élément de la BDD via URL
+    /**
+     * @route("/book/delete/{id}", name="book_delete")
+     */
+    public function deleteBookUrl (BookRepository $bookRepository, EntityManagerInterface $entityManager, $id)
+    {
+        $book = $bookRepository->find ($id);
+        $entityManager->remove($book);
+        $entityManager->flush();
+
+        return new Response("Le livre a bien été supprimé de la BDD");
+    }
+
+
 }
 
