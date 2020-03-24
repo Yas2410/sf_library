@@ -37,9 +37,13 @@ p {
     color: #C82829;
 }
 
+.update {
+    color: mediumseagreen;
+}
+
 .cover {
     background-image: url("https://images.pexels.com/photos/1018136/pexels-photo-1018136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 120vh;
 }
