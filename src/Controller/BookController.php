@@ -124,9 +124,10 @@ class BookController extends AbstractController
     /**
      * @route("/book/search", name="book_search")
      */
-    public function searchByResume(BookRepository $bookRepository)
+    public function searchByResume(BookRepository $bookRepository, Request $request)
     {
-        $books = $bookRepository->getByWordInResume();
+        $search = $request->query->get('search');
+        $books = $bookRepository->getByWordInResume($search);
 
         dump($books); die;
     }
