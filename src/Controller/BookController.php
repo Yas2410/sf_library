@@ -78,6 +78,18 @@ class BookController extends AbstractController
         return new Response( "test2");
     }
 
+    //Supprimer un élément de la BDD
+    /**
+     * @route("/book/delete", name="book_delete")
+     */
+    public function deleteBook (BookRepository $bookRepository, EntityManagerInterface $entityManager)
+    {
+        $book = $bookRepository->find(10);
+        $entityManager->remove($book);
+        $entityManager->flush();
+
+        return new Response("Le livre a bien été supprimé de la BDD");
+    }
 
 }
 
