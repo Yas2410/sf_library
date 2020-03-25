@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+
+
+    <section>
+
+        <h5>Vous avez recherché le mot : {{ search }}</h5>
+
+        {% for author in authors %}
+        <div>
+            <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+            <span> <em>{{ author.birthDate|date('d/m/Y') }} - {{ author.deathDate|date('d/m/Y')}}</em></span>
+            <p></br> {{ author.biography }}</p>
+            <div><a href="{{ path ('author', {'id':author.id}) }}"> - Details - </a></div>
+            <div><a class="delete" href="{{ path ('author_delete', {'id':author.id}) }}"> - Supprimer l'auteur - </a></div>
+            <div class="margin"><a class="update" href="{{ path ('author_update', {'id':author.id}) }}"> - Modifier l'auteur - </a></div>
+            {% endfor %}
+            <div><a href="{{ path ('books') }}"> - Revenir à la Liste des Auteurs - </a></div>
+        </div>
+
+    </section>
+
+{% endblock %}

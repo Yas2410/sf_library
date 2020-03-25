@@ -22,10 +22,12 @@ class BookRepository extends ServiceEntityRepository
         $queryBuilder = $this->createQueryBuilder('book');
         $query = $queryBuilder->select('book')
         ->where('book.resume LIKE :word')
+            //SECURITE
         ->setParameter('word', '%'.$word.'%')
         ->getQuery();
 
         $results = $query->getResult();
+        //Méthode qui me retourne les résultats que l'on va ensuite appeler (affichier) dans mon bookcontroller
         return $results;
 
     }

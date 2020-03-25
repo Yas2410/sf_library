@@ -129,7 +129,9 @@ class BookController extends AbstractController
         $search = $request->query->get('search');
         $books = $bookRepository->getByWordInResume($search);
 
-       return $this->render('search.html.twig', ['search'=>$search, 'books'=>$books]);
+       return $this->render('search.html.twig', [
+           'search'=>$search, 'books'=>$books
+       ]);
     }
 }
 
