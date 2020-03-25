@@ -2,7 +2,10 @@
 {% block content %}
 
 <section class="cover">
-
+    <form action="{{ path('book_search') }}" method="GET">
+        <input type="search" name="search">
+        <input type="submit" value="Rechercher">
+    </form>
     {% for book in books %}
     <div>
     <h1>{{ book.title }}</h1>
