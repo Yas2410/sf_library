@@ -1,9 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/common/base.html.twig' %}
 {% block content %}
 
     <section>
         <div>
             <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+
             <span> <em>{{ author.birthDate|date('d/m/Y') }} - {{ author.deathDate|date('d/m/Y')}}</em></span>
             <p></br> {{ author.biography }}</p>
         </div>

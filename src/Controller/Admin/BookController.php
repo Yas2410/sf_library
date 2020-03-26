@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Book;
 use App\Repository\BookRepository;
@@ -13,30 +13,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookController extends AbstractController
 {
     /**
-     * @Route("/books", name="books")
+     * @Route("admin/books", name="admin_books")
      */
     public function books (BookRepository $bookRepository)
     {
         $books = $bookRepository->findAll();
-        return $this->render('books.html.twig', [
+        return $this->render('admin/book/books.html.twig', [
             'books' => $books
             ]);
     }
 
     /**
-     * @route("/book/show/{id}", name="book")
+     * @route("admin/book/show/{id}", name="admin_book")
      */
     public function book(BookRepository $bookRepository, $id)
     {
         $book = $bookRepository->find($id);
 
-        return $this->render('book.html.twig', [
+        return $this->render('admin/book/book.html.twig', [
             'book' => $book
         ]);
     }
 
     /**
-     * @route("/book/insert", name="book_insert")
+     * @route("admin/book/insert", name="admin_book_insert")
      * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
@@ -80,11 +80,11 @@ class BookController extends AbstractController
 
     //Supprimer un élément de la BDD
     /**
-     * @route("/book/delete", name="book_delete")
+     * @route("admin/book/delete", name="admin_book_delete")
      */
-    public function deleteBook (BookRepository $bookRepository, EntityManagerInterface $entityManager)
+    public function deleteBook (BookRepository $bookRepository, EntityManagerInterface $entityManager, $id)
     {
-        $book = $bookRepository->find(10);
+        $book = $bookRepository->find($id);
         $entityManager->remove($book);
         $entityManager->flush();
 
@@ -93,7 +93,7 @@ class BookController extends AbstractController
 
     //Supprimer un élément de la BDD via URL
     /**
-     * @route("/book/delete/{id}", name="book_delete")
+     * @route("admin/book/delete/{id}", name="admin_book_delete")
      */
     public function deleteBookUrl (BookRepository $bookRepository, EntityManagerInterface $entityManager, $id)
     {
@@ -106,7 +106,7 @@ class BookController extends AbstractController
 
     //METTRE A JOUR UN ELEMENT DE LA BDD
     /**
-     * @route("/book/update/{id}", name="book_update")
+     * @route("admin/book/update/{id}", name="admin_book_update")
      */
     public function updateBook (
         BookRepository $bookRepository,
@@ -122,14 +122,14 @@ class BookController extends AbstractController
     }
 
     /**
-     * @route("/book/search", name="book_search")
+     * @route("admin/book/search", name="admin_book_search")
      */
     public function searchByResume(BookRepository $bookRepository, Request $request)
     {
         $search = $request->query->get('search');
         $books = $bookRepository->getByWordInResume($search);
 
-       return $this->render('search.html.twig', [
+       return $this->render('admin/book/search.html.twig', [
            'search'=>$search, 'books'=>$books
        ]);
     }

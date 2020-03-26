@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Author;
 use App\Repository\AuthorRepository;
@@ -13,30 +13,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class AuthorController extends AbstractController
 {
     /**
-     * @Route("/authors", name="authors")
+     * @Route("admin/authors", name="admin_authors")
      */
     public function authors (AuthorRepository $authorRepository)
     {
         $authors = $authorRepository->findAll();
-        return $this->render('authors.html.twig', [
+        return $this->render('admin/author/authors.html.twig', [
             'authors' => $authors
         ]);
     }
 
     /**
-     * @route("/author/show/{id}", name="author")
+     * @route("admin/author/show/{id}", name="admin_author")
      */
     public function author(AuthorRepository $authorRepository, $id)
     {
         $author = $authorRepository->find($id);
 
-        return $this->render('author.html.twig', [
+        return $this->render('admin/author/author.html.twig', [
             'author' => $author
         ]);
     }
 
     /**
-     * @route("/author/insert", name="author_insert")
+     * @route("admin/author/insert", name="admin_author_insert")
      * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
@@ -52,6 +52,7 @@ class AuthorController extends AbstractController
         $birthDate = $request->query->get("birthDate");
         $deathDate = $request->query->get("deathDate");
         $biography = $request->query->get("biography");
+        $img = $request->query->get("img");
 
         $author->setfirstName($firstName);
         $author->setlastName($lastName);
@@ -69,11 +70,11 @@ class AuthorController extends AbstractController
 
     //Supprimer un élément de la BDD
     /**
-     * @route("/author/delete", name="author_delete")
+     * @route("admin/author/delete", name="admin_author_delete")
      */
-    public function deleteAuthor (AuthorRepository $authorRepository, EntityManagerInterface $entityManager)
+    public function deleteAuthor (AuthorRepository $authorRepository, EntityManagerInterface $entityManager, $id)
     {
-        $author = $authorRepository->find(10);
+        $author = $authorRepository->find($id);
         $entityManager->remove($author);
         $entityManager->flush();
 
@@ -82,7 +83,7 @@ class AuthorController extends AbstractController
 
     //Supprimer un élément de la BDD via URL
     /**
-     * @route("/author/delete/{id}", name="author_delete")
+     * @route("admin/author/delete/{id}", name="admin_author_delete")
      */
     public function deleteAuthorUrl (AuthorRepository $authorRepository, EntityManagerInterface $entityManager, $id)
     {
@@ -95,7 +96,7 @@ class AuthorController extends AbstractController
 
     //METTRE A JOUR UN ELEMENT DE LA BDD
     /**
-     * @route("/author/update/{id}", name="author_update")
+     * @route("admin/author/update/{id}", name="admin_author_update")
      */
     public function updateAuthor (
         AuthorRepository $authorRepository,
@@ -111,14 +112,14 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @route("/author/search", name="author_search")
+     * @route("admin/author/search", name="admin_author_search")
      */
     public function searchByBiography(AuthorRepository $authorRepository, Request $request)
     {
         $search = $request->query->get('search');
         $authors = $authorRepository->getByWordInBiography($search);
 
-        return $this->render('searchBio.html.twig', [
+        return $this->render('admin/author/searchBio.html.twig', [
             'search'=>$search, 'authors'=>$authors
         ]);
     }

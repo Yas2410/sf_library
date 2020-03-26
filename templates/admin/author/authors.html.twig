@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/common/base.html.twig' %}
 {% block content %}
 
 <section>
-    <form action="{{ path('author_search') }}" method="GET">
+    <form action="{{ path('admin_author_search') }}" method="GET">
         <input type="search" name="search">
         <input type="submit" value="Rechercher">
     </form>
@@ -15,9 +15,9 @@
                     {% endif %}
             </em></span>
             <p></br> {{ author.biography }}</p>
-        <div><a href="{{ path ('author', {'id':author.id}) }}"> - Details - </a></div>
-        <div><a class="delete" href="{{ path ('author_delete', {'id':author.id}) }}"> - Supprimer l'auteur - </a></div>
-        <div class="margin"><a class="update" href="{{ path ('author_update', {'id':author.id}) }}"> - Modifier l'auteur - </a></div>
+        <div><a href="{{ path ('admin_author', {'id':author.id}) }}"> - Details - </a></div>
+        <div><a class="delete" href="{{ path ('admin_author_delete', {'id':author.id}) }}"> - Supprimer l'auteur - </a></div>
+        <div class="margin"><a class="update" href="{{ path ('admin_author_update', {'id':author.id}) }}"> - Modifier l'auteur - </a></div>
         {% endfor %}
         </div>
     </section>
