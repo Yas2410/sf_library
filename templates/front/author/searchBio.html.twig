@@ -1,19 +1,22 @@
+<section>
 
-    <section>
+    <h5>Vous avez recherché le mot : {{ search }}</h5>
 
-        <h5>Vous avez recherché le mot : {{ search }}</h5>
-
-        {% for author in authors %}
-        <div>
-            <h1>{{ author.firstName }} {{ author.lastName }}</h1>
-            <span> <em>{{ author.birthDate|date('d/m/Y') }} -
+    {% for author in authors %}
+    <div>
+        <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+        <span> <em>{{ author.birthDate|date('d/m/Y') }} -
                     {% if author.deathDate %}
                         {{ author.deathDate| date('d/m/Y') }}
                     {% endif %}
                 </em></span>
-            <p></br> {{ author.biography }}</p>
-            {% endfor %}
-            <div><a href="{{ path ('front_authors') }}"> - Revenir à la Liste des Auteurs - </a></div>
-        </div>
+        <p></br> {{ author.biography }}</p>
+        {% endfor %}
+        <p>Livres : </p>
+        {% for book in author.books %}
+            <p>{{ book.title }}</p>
+        {% endfor %}
+        <div><a href="{{ path ('front_authors') }}"> - Revenir à la Liste des Auteurs - </a></div>
+    </div>
 
-    </section>
+</section>

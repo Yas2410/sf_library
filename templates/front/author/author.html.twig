@@ -1,14 +1,17 @@
+<section>
+    <div>
+        <h1>{{ author.firstName }} {{ author.lastName }}</h1>
 
-    <section>
-        <div>
-            <h1>{{ author.firstName }} {{ author.lastName }}</h1>
-
-            <span> <em>{{ author.birthDate|date('d/m/Y') }} -
+        <span> <em>{{ author.birthDate|date('d/m/Y') }} -
                         {% if author.deathDate %}
                             {{ author.deathDate| date('d/m/Y') }}
                         {% endif %}
                 </em></span>
-            <p></br> {{ author.biography }}</p>
-        </div>
+        <p></br> {{ author.biography }}</p>
+        <p>Livres : </p>
+        {% for book in author.books %}
+            <p>{{ book.title }}</p>
+        {% endfor %}
+    </div>
 
-    </section>
+</section>

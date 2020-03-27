@@ -5,8 +5,12 @@
         <div>
             <h1>{{ author.firstName }} {{ author.lastName }}</h1>
 
-            <span> <em>{{ author.birthDate|date('d/m/Y') }} - {{ author.deathDate|date('d/m/Y')}}</em></span>
+            <span> <em>{{ author.birthDate|date('d/m/Y') }} - {{ author.deathDate|date('d/m/Y') }}</em></span>
             <p></br> {{ author.biography }}</p>
+            <p>Livres : </p>
+            {% for book in author.books %}
+                <p>{{ book.title }}</p>
+            {% endfor %}
         </div>
 
     </section>

@@ -15,7 +15,7 @@ class AuthorController extends AbstractController
     /**
      * @Route("admin/authors", name="admin_authors")
      */
-    public function authors (AuthorRepository $authorRepository)
+    public function authors(AuthorRepository $authorRepository)
     {
         $authors = $authorRepository->findAll();
         return $this->render('admin/author/authors.html.twig', [
@@ -42,7 +42,7 @@ class AuthorController extends AbstractController
      * @return Response
      */
 
-    public function insertAuthor (EntityManagerInterface $entityManager, Request $request)
+    public function insertAuthor(EntityManagerInterface $entityManager, Request $request)
     {
         $author = new Author();
 
@@ -57,22 +57,22 @@ class AuthorController extends AbstractController
         $author->setfirstName($firstName);
         $author->setlastName($lastName);
         $author->setbirthDate(new \DateTime($birthDate));
-        if (!is_null($deathDate))
-        {
+        if (!is_null($deathDate)) {
             $author->setdeathDate(new \DateTime($deathDate));
         }
 
         $author->setBiography($biography);
         $entityManager->persist($author);
         $entityManager->flush();
-        return new Response( "TEST");
+        return new Response("TEST");
     }
 
     //Supprimer un élément de la BDD
+
     /**
      * @route("admin/author/delete", name="admin_author_delete")
      */
-    public function deleteAuthor (AuthorRepository $authorRepository, EntityManagerInterface $entityManager, $id)
+    public function deleteAuthor(AuthorRepository $authorRepository, EntityManagerInterface $entityManager, $id)
     {
         $author = $authorRepository->find($id);
         $entityManager->remove($author);
@@ -82,12 +82,13 @@ class AuthorController extends AbstractController
     }
 
     //Supprimer un élément de la BDD via URL
+
     /**
      * @route("admin/author/delete/{id}", name="admin_author_delete")
      */
-    public function deleteAuthorUrl (AuthorRepository $authorRepository, EntityManagerInterface $entityManager, $id)
+    public function deleteAuthorUrl(AuthorRepository $authorRepository, EntityManagerInterface $entityManager, $id)
     {
-        $author = $authorRepository->find ($id);
+        $author = $authorRepository->find($id);
         $entityManager->remove($author);
         $entityManager->flush();
 
@@ -95,16 +96,17 @@ class AuthorController extends AbstractController
     }
 
     //METTRE A JOUR UN ELEMENT DE LA BDD
+
     /**
      * @route("admin/author/update/{id}", name="admin_author_update")
      */
-    public function updateAuthor (
+    public function updateAuthor(
         AuthorRepository $authorRepository,
         EntityManagerInterface $entityManager,
         $id
     )
     {
-        $author = $authorRepository->find ($id);
+        $author = $authorRepository->find($id);
         $author->setFirstName("");
         $entityManager->persist($author);
         $entityManager->flush();
@@ -120,7 +122,7 @@ class AuthorController extends AbstractController
         $authors = $authorRepository->getByWordInBiography($search);
 
         return $this->render('admin/author/searchBio.html.twig', [
-            'search'=>$search, 'authors'=>$authors
+            'search' => $search, 'authors' => $authors
         ]);
     }
 }

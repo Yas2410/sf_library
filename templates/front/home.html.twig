@@ -1,4 +1,41 @@
-
-<h1>Bienvenue sur la librairie en ligne ! </h1>
-<a href="{{ path('front_books') }}">Voir les livres</a>
-<a href="{{ path('front_authors') }}">Voir les auteurs</a>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=La+Belle+Aurore|Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/homefront.css') }}">
+    <title>{% block title %}Librairie en ligne{% endblock %}</title>
+</head>
+<body>
+<header class="container">
+    <h1>Bienvenue sur Ma Petite Librairie ! </h1>
+    <div>
+        <img class="imgResp" src="{{ asset('img/headerfront.png') }}">
+    </div>
+</header>
+<article>
+    <h2>Les derniers livres ajoutés :</h2>
+    {% for book in books %}
+    <h4>{{ book.title }}</h4>
+    <span> <strong>{{ book.author.firstName}} {{ book.author.lastName }}</strong></span>
+    <span> <em>{{ book.nbPages }} pages</em></span>
+    {% endfor %}
+</article>
+<br/>
+<article>
+    <h2>Les derniers auteurs ajoutés :</h2>
+    {% for author in authors %}
+        <h5>{{ author.firstname }} {{ author.lastname }}</h5>
+    {% endfor %}
+</article>
+<section class="container2">
+    <div class="boxbooks">
+    <a href="{{ path('front_books') }}">Voir les livres</a>
+    </div>
+    <div class="boxauthors">
+    <a href="{{ path('front_authors') }}">Voir les auteurs</a>
+    </div>
+</section>
+</body>
+</html>

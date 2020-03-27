@@ -16,15 +16,15 @@ class BookRepository extends ServiceEntityRepository
 
 
     //Création d'une méthode : selectionner un livre en fonction d'un mot défini et contenu dans le résumé
-    public function getByWordInResume ($word)
+    public function getByWordInResume($word)
     {
 
         $queryBuilder = $this->createQueryBuilder('book');
         $query = $queryBuilder->select('book')
-        ->where('book.resume LIKE :word')
+            ->where('book.resume LIKE :word')
             //SECURITE
-        ->setParameter('word', '%'.$word.'%')
-        ->getQuery();
+            ->setParameter('word', '%' . $word . '%')
+            ->getQuery();
 
         $results = $query->getResult();
         //Méthode qui me retourne les résultats que l'on va ensuite appeler (affichier) dans mon bookcontroller

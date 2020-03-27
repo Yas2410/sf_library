@@ -15,12 +15,12 @@ class BookController extends AbstractController
     /**
      * @Route("front/books", name="front_books")
      */
-    public function books (BookRepository $bookRepository)
+    public function books(BookRepository $bookRepository)
     {
         $books = $bookRepository->findAll();
         return $this->render('front/book/books.html.twig', [
             'books' => $books
-            ]);
+        ]);
     }
 
     /**
@@ -44,7 +44,7 @@ class BookController extends AbstractController
         $books = $bookRepository->getByWordInResume($search);
 
         return $this->render('front/book/search.html.twig', [
-            'search'=>$search, 'books'=>$books
+            'search' => $search, 'books' => $books
         ]);
     }
 

@@ -10,12 +10,14 @@
         {% for book in books %}
         <div>
             <h1>{{ book.title }}</h1>
-            <span> <strong>{{ book.author }}</strong></span>
+            <span> <strong>{{ book.author.firstName }} {{ book.author.lastName }}</strong></span>
             <span> <em>{{ book.nbPages }} pages</em></span>
             <p></br> {{ book.resume }}</p>
             <div><a href="{{ path ('admin_book', {'id':book.id}) }}"> - Details - </a></div>
-            <div><a class="delete" href="{{ path ('admin_book_delete', {'id':book.id}) }}"> - Supprimer le livre - </a></div>
-            <div class="margin"><a class="update" href="{{ path ('admin_book_update', {'id':book.id}) }}"> - Modifier le livre - </a></div>
+            <div><a class="delete" href="{{ path ('admin_book_delete', {'id':book.id}) }}"> - Supprimer le livre - </a>
+            </div>
+            <div class="margin"><a class="update" href="{{ path ('admin_book_update', {'id':book.id}) }}"> - Modifier le
+                    livre - </a></div>
             {% endfor %}
             <div><a href="{{ path ('admin_books') }}"> - Revenir à la Bibliothèque - </a></div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
+use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,12 +16,12 @@ class BookController extends AbstractController
     /**
      * @Route("admin/books", name="admin_books")
      */
-    public function books (BookRepository $bookRepository)
+    public function books(BookRepository $bookRepository)
     {
         $books = $bookRepository->findAll();
         return $this->render('admin/book/books.html.twig', [
             'books' => $books
-            ]);
+        ]);
     }
 
     /**
@@ -57,32 +58,40 @@ class BookController extends AbstractController
 
     }*/
 
-    public function insertBook (EntityManagerInterface $entityManager, Request $request)
+    public function insertBook(EntityManagerInterface $entityManager,
+    Request $request,
+    AuthorRepository $authorRepository
+    )
+
     {
         $book = new Book();
 
         //Récupérer les éléments à partir de l'URL
 
         $title = $request->query->get("title");
-        $author = $request->query->get("author");
         $nbPages = $request->query->get("nbPages");
         $resume = $request->query->get("resume");
 
-        $book->setTitle($title);
+        //Récupérer un auteur en BDD avec l'authorrepository
+        $author=$authorRepository->find(1);
+        //Je relie l'auteur récupéré avec le livre que je suis en train de créer
         $book->setAuthor($author);
+
+        $book->setTitle($title);
         $book->setNbPages($nbPages);
         $book->setResume($resume);
 
         $entityManager->persist($book);
         $entityManager->flush();
-        return new Response( "test2");
+        return new Response("test2");
     }
 
     //Supprimer un élément de la BDD
+
     /**
      * @route("admin/book/delete", name="admin_book_delete")
      */
-    public function deleteBook (BookRepository $bookRepository, EntityManagerInterface $entityManager, $id)
+    public function deleteBook(BookRepository $bookRepository, EntityManagerInterface $entityManager, $id)
     {
         $book = $bookRepository->find($id);
         $entityManager->remove($book);
@@ -92,12 +101,13 @@ class BookController extends AbstractController
     }
 
     //Supprimer un élément de la BDD via URL
+
     /**
      * @route("admin/book/delete/{id}", name="admin_book_delete")
      */
-    public function deleteBookUrl (BookRepository $bookRepository, EntityManagerInterface $entityManager, $id)
+    public function deleteBookUrl(BookRepository $bookRepository, EntityManagerInterface $entityManager, $id)
     {
-        $book = $bookRepository->find ($id);
+        $book = $bookRepository->find($id);
         $entityManager->remove($book);
         $entityManager->flush();
 
@@ -105,16 +115,17 @@ class BookController extends AbstractController
     }
 
     //METTRE A JOUR UN ELEMENT DE LA BDD
+
     /**
      * @route("admin/book/update/{id}", name="admin_book_update")
      */
-    public function updateBook (
+    public function updateBook(
         BookRepository $bookRepository,
         EntityManagerInterface $entityManager,
         $id
     )
     {
-        $book = $bookRepository->find ($id);
+        $book = $bookRepository->find($id);
         $book->setTitle("La Jeune Fille et La Nuit");
         $entityManager->persist($book);
         $entityManager->flush();
@@ -129,9 +140,9 @@ class BookController extends AbstractController
         $search = $request->query->get('search');
         $books = $bookRepository->getByWordInResume($search);
 
-       return $this->render('admin/book/search.html.twig', [
-           'search'=>$search, 'books'=>$books
-       ]);
+        return $this->render('admin/book/search.html.twig', [
+            'search' => $search, 'books' => $books
+        ]);
     }
 }
 

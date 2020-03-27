@@ -15,7 +15,7 @@ class AuthorController extends AbstractController
     /**
      * @Route("front/authors", name="front_authors")
      */
-    public function authors (AuthorRepository $authorRepository)
+    public function authors(AuthorRepository $authorRepository)
     {
         $authors = $authorRepository->findAll();
         return $this->render('front/author/authors.html.twig', [
@@ -44,10 +44,9 @@ class AuthorController extends AbstractController
         $authors = $authorRepository->getByWordInBiography($search);
 
         return $this->render('front/author/searchBio.html.twig', [
-            'search'=>$search, 'authors'=>$authors
+            'search' => $search, 'authors' => $authors
         ]);
     }
-
 
 
 }

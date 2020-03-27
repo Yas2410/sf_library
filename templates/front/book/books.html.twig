@@ -7,7 +7,7 @@
     {% for book in books %}
     <div>
     <h1>{{ book.title }}</h1>
-    <span> <strong>{{ book.author }}</strong></span>
+    <span> <strong> Auteur relié : {{ book.author.firstName }} {{ book.author.lastName }}</strong></span>
     <span> <em>{{ book.nbPages }} pages</em></span>
     <p></br> {{ book.resume }}</p>
     <div><a href="{{ path ('front_book', {'id':book.id}) }}"> - Details - </a></div>
