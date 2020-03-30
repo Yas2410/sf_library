@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
+use App\Form\BookType;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -58,32 +59,28 @@ class BookController extends AbstractController
 
     }*/
 
-    public function insertBook(EntityManagerInterface $entityManager,
-    Request $request,
-    AuthorRepository $authorRepository
-    )
+    public function insertBook(Request $request, EntityManagerInterface $entityManager)
 
     {
-        $book = new Book();
+        // Création d'un nouveau livre afin de le lier au formulaire
+        $book = new Book ();
 
-        //Récupérer les éléments à partir de l'URL
+        //Création du formulaire que je lie au nouveau livre
+        $formBook = $this->createForm(BookType::class, $book);
 
-        $title = $request->query->get("title");
-        $nbPages = $request->query->get("nbPages");
-        $resume = $request->query->get("resume");
+        //Je demande à mon formulaire (ici $formBook) de gérer les données POST
+        $formBook->handleRequest($request);
 
-        //Récupérer un auteur en BDD avec l'authorrepository
-        $author=$authorRepository->find(1);
-        //Je relie l'auteur récupéré avec le livre que je suis en train de créer
-        $book->setAuthor($author);
+        //Si les données envoyées depuis le formulaire sont valides :
+        if ($formBook->isSubmitted() && $formBook->isValid()) {
 
-        $book->setTitle($title);
-        $book->setNbPages($nbPages);
-        $book->setResume($resume);
 
-        $entityManager->persist($book);
-        $entityManager->flush();
-        return new Response("test2");
+            $entityManager->persist($book);
+            $entityManager->flush();
+        }
+        return $this->render('admin/book/insert.html.twig', [
+            'formBook' => $formBook->createView()
+        ]);
     }
 
     //Supprimer un élément de la BDD
