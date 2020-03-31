@@ -28,9 +28,15 @@
     {{ form_label(formBook.resume)}}
     {{ form_widget(formBook.resume, {'attr': {'class': 'form-control'}}) }}
     {{ form_errors(formBook.resume) }}
+
+    {{ form_label(formBook.author)}}
+    {{ form_widget(formBook.author, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(formBook.author) }}
+
 <div class="btn">
-{{ form_widget(formBook.Submit, {'attr': {'class': 'btn btn-secondary'}}) }}
+    {{ form_widget(formBook.Submit, {'attr': {'class': 'btn btn-secondary'}}) }}
 </div>
+
     {{ form_end(formBook) }}
 </div>
 
