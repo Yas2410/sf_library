@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
+use App\Form\AuthorType;
 use App\Form\BookType;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
@@ -46,17 +47,13 @@ class BookController extends AbstractController
     /*public function insertBook (EntityManagerInterface $entityManager, Request $request)
     {
         $book = new Book();
-
         $book->setTitle("L'amie Prodigieuse");
         $book->setAuthor("Elena FERRANTE");
         $book->setNbPages("440");
         $book->setResume("Test insertion nouveau livre");
-
         $entityManager->persist($book);
         $entityManager->flush();
-
         return new Response( "test");
-
     }*/
 
     public function insertBook(Request $request, EntityManagerInterface $entityManager)
@@ -74,9 +71,12 @@ class BookController extends AbstractController
         //Si les données envoyées depuis le formulaire sont valides :
         if ($formBook->isSubmitted() && $formBook->isValid()) {
 
-        //J'enregistre les livres
+            //J'enregistre les livres
             $entityManager->persist($book);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Votre livre a bien été créé !');
+
         }
         return $this->render('admin/book/insert.html.twig', [
             'formBook' => $formBook->createView()
@@ -117,16 +117,24 @@ class BookController extends AbstractController
      * @route("admin/book/update/{id}", name="admin_book_update")
      */
     public function updateBook(
+        Request $request,
         BookRepository $bookRepository,
         EntityManagerInterface $entityManager,
         $id
     )
     {
         $book = $bookRepository->find($id);
-        $book->setTitle("La Jeune Fille et La Nuit");
-        $entityManager->persist($book);
-        $entityManager->flush();
-        return new Response ('Le titre du livre a bien été modifié!');
+        $formBook = $this->createForm(BookType::class, $book);
+        $formBook->handleRequest($request);
+        if ($formBook->isSubmitted() && $formBook->isValid()) {
+            $entityManager->persist($book);
+            $entityManager->flush();
+
+        }
+
+        return $this->render('admin/book/insert.html.twig', [
+            'formBook' => $formBook->createView()
+        ]);
     }
 
     /**
@@ -142,4 +150,3 @@ class BookController extends AbstractController
         ]);
     }
 }
-

@@ -1,1 +1,33 @@
-{{ form(formAuthor) }}
+{#{{ form(formAuthor) }}#}
+
+{{ form_start(formAuthor) }}
+
+{{ form_label(formAuthor.firstName)}}
+<div>
+    {{ form_widget(formAuthor.firstName) }}
+</div>
+
+{{ form_label(formAuthor.lastName)}}
+<div>
+    {{ form_widget(formAuthor.lastName) }}
+</div>
+
+{{ form_label(formAuthor.birthDate) }}
+<div>
+    {{ form_widget(formAuthor.birthDate) }}
+</div>
+
+{{ form_label(formAuthor.deathDate) }}
+<div>
+    {{ form_widget(formAuthor.deathDate) }}
+</div>
+
+{{ form_label(formAuthor.biography) }}
+<div>
+    {{ form_widget(formAuthor.biography) }}
+</div>
+
+{{ form_widget(formAuthor.Submit) }}
+
+{{ form_end(formAuthor) }}
+

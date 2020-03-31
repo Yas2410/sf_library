@@ -1,1 +1,36 @@
-{{ form(formBook) }}
+{#{{ form(formBook) }}#}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/form.css') }}">
+
+
+
+{% for message in app.flashes('success') %}
+<div class="message">
+    {{ message }}
+</div>
+{% endfor %}
+
+<div class="form" >
+{{ form_start(formBook) }}
+
+    {{ form_label(formBook.title)}}
+    {{ form_widget(formBook.title, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(formBook.title) }}
+
+
+    {{ form_label(formBook.nbPages)}}
+    {{ form_widget(formBook.nbPages, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(formBook.nbPages) }}
+
+
+    {{ form_label(formBook.resume)}}
+    {{ form_widget(formBook.resume, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(formBook.resume) }}
+<div class="btn">
+{{ form_widget(formBook.Submit, {'attr': {'class': 'btn btn-secondary'}}) }}
+</div>
+    {{ form_end(formBook) }}
+</div>
+

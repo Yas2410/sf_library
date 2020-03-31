@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Author;
+use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,7 +43,33 @@ class AuthorController extends AbstractController
      * @return Response
      */
 
-    public function insertAuthor(EntityManagerInterface $entityManager, Request $request)
+    public function insertAuthor (Request $request, EntityManagerInterface $entityManager)
+    {
+        // Création d'un nouvel auteur afin de le lier au formulaire
+        $author = new Author ();
+
+        //Création du formulaire que je lie au nouvel auteur
+        $formAuthor = $this->createForm(AuthorType::class, $author);
+
+        //Je demande à mon formulaire (ici $formAuthor) de gérer les données POST
+        $formAuthor->handleRequest($request);
+
+        //Si les données envoyées depuis le formulaire sont valides :
+        if ($formAuthor->isSubmitted() && $formAuthor->isValid()) {
+
+            //J'enregistre les auteurs
+            $entityManager->persist($author);
+            $entityManager->flush();
+        }
+
+        return $this->render('admin/author/insertAuth.html.twig', [
+            'formAuthor' => $formAuthor->createView()
+        ]);
+
+    }
+
+
+    /*public function insertAuthor(EntityManagerInterface $entityManager, Request $request)
     {
         $author = new Author();
 
@@ -65,7 +92,7 @@ class AuthorController extends AbstractController
         $entityManager->persist($author);
         $entityManager->flush();
         return new Response("TEST");
-    }
+    }*/
 
     //Supprimer un élément de la BDD
 
@@ -101,16 +128,25 @@ class AuthorController extends AbstractController
      * @route("admin/author/update/{id}", name="admin_author_update")
      */
     public function updateAuthor(
+        Request $request,
         AuthorRepository $authorRepository,
         EntityManagerInterface $entityManager,
         $id
     )
+
     {
         $author = $authorRepository->find($id);
-        $author->setFirstName("");
-        $entityManager->persist($author);
-        $entityManager->flush();
-        return new Response ("L\'identité de l\'auteur a été mise à jour!");
+        $formAuthor = $this->createForm(AuthorType::class, $author);
+        $formAuthor->handleRequest($request);
+        if ($formAuthor->isSubmitted() && $formAuthor->isValid()) {
+            $entityManager->persist($author);
+            $entityManager->flush();
+        }
+
+        return $this->render('admin/author/insertAuth.html.twig', [
+            'formAuthor' => $formAuthor->createView()
+        ]);
+
     }
 
     /**

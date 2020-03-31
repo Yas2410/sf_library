@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="67bb02a7-d79f-409d-aa9a-81bf014b9f62" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/admin/author/insertAuth.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/form.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AuthorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AuthorController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/BookController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Front/AuthorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Front/AuthorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/author/insertAuth.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/author/insertAuth.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/book/insert.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/book/insert.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,16 +154,16 @@
     <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\sf_library\templates\front\book" />
-      <recent name="C:\wamp64\www\sf_library\templates\front\author" />
-      <recent name="C:\wamp64\www\sf_library\src\Controller\Front" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\sf_library\templates\admin\common" />
       <recent name="C:\wamp64\www\sf_library\templates\Admin\Books" />
       <recent name="C:\wamp64\www\sf_library\templates\Admin\Authors" />
       <recent name="C:\wamp64\www\sf_library\src\Controller\Admin" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\sf_library\templates\front\book" />
+      <recent name="C:\wamp64\www\sf_library\templates\front\author" />
+      <recent name="C:\wamp64\www\sf_library\src\Controller\Front" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -176,7 +182,8 @@
       <workItem from="1585211582561" duration="15681000" />
       <workItem from="1585240361974" duration="954000" />
       <workItem from="1585295893444" duration="16490000" />
-      <workItem from="1585554066820" duration="7480000" />
+      <workItem from="1585554066820" duration="17058000" />
+      <workItem from="1585640805408" duration="6585000" />
     </task>
     <task id="LOCAL-00001" summary="Update 1 (Renamed files)">
       <created>1585039404481</created>
@@ -318,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585564039004</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Submit/Form">
+      <created>1585570369370</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1585570369370</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,14 +368,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1585039351115" />
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585568789619">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585582147701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1585568789619" />
-    <state x="391" y="0" key="CommitChangelistDialog2" timestamp="1585564038106">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1585582147701" />
+    <state x="391" y="0" key="CommitChangelistDialog2" timestamp="1585570368635">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="391" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1585564038106" />
+    <state x="391" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1585570368635" />
     <state x="349" y="147" key="IDE.errors.dialog" timestamp="1585060869203">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -370,14 +384,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585305334367" />
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1585564045284">
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1585570370783">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1585564045284" />
-    <state x="444" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1585554067135">
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1585570370783" />
+    <state x="444" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1585640810375">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="444" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585554067135" />
+    <state x="444" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585640810375" />
     <state x="410" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585053660115">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

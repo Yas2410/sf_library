@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
@@ -19,16 +20,23 @@ class Book
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @assert\NotBlank(message="Merci de remplir le titre")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=500)
+     * @assert\Length(min = 20)
      */
     private $resume;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 10,
+     *      max = 1000,
+     *      notInRangeMessage="Il faut indiquer un nombre de pages compris entre 10 et 1000"
+     * )
      */
     private $nbPages;
 
