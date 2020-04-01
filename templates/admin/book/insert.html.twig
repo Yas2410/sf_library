@@ -33,6 +33,8 @@
     {{ form_widget(formBook.author, {'attr': {'class': 'custom-select'}}) }}
     {{ form_errors(formBook.author) }}
 
+    {{ form_row(formBook.cover) }}
+
 <div class="btn">
     {{ form_widget(formBook.Submit, {'attr': {'class': 'btn btn-secondary'}}) }}
 </div>

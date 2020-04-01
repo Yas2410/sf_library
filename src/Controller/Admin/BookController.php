@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class BookController extends AbstractController
 {
@@ -40,8 +41,9 @@ class BookController extends AbstractController
 
     /**
      * @route("admin/book/insert", name="admin_book_insert")
-     * @param EntityManagerInterface $entityManager
      * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param $slugger
      * @return Response
      */
     /*public function insertBook (EntityManagerInterface $entityManager, Request $request)
@@ -56,7 +58,7 @@ class BookController extends AbstractController
         return new Response( "test");
     }*/
 
-    public function insertBook(Request $request, EntityManagerInterface $entityManager)
+    public function insertBook(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
 
     {
         // Création d'un nouveau livre afin de le lier au formulaire
@@ -71,6 +73,18 @@ class BookController extends AbstractController
         //Si les données envoyées depuis le formulaire sont valides :
         if ($formBook->isSubmitted() && $formBook->isValid()) {
 
+            $cover = $formBook->get('cover')->getData();
+            if ($cover) {
+                $originalFilename = pathinfo($cover->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$cover->guessExtension();
+
+                $cover->move(
+                    $this->getParameter('cover_directory'),
+                    $newFilename);
+
+                $book->setCover($newFilename);
+            }
             //J'enregistre les livres
             $entityManager->persist($book);
             $entityManager->flush();
@@ -81,6 +95,7 @@ class BookController extends AbstractController
         return $this->render('admin/book/insert.html.twig', [
             'formBook' => $formBook->createView()
         ]);
+
     }
 
     //Supprimer un élément de la BDD

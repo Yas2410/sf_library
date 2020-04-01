@@ -47,3 +47,12 @@ p {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.img-fluid {
+    width: 100%;
+    height: auto;
+}
+
+.img {
+    width: 25%;
+}
