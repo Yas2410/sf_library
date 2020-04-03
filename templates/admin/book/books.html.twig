@@ -9,6 +9,9 @@
         {% for book in books %}
         <div>
             <h1>{{ book.title }}</h1>
+            <div class="img">
+                <img src="{{ asset ('uploads/cover/') ~ book.cover}}" alt="" class="img-fluid">
+            </div>
             <span> <strong>{{ book.author.firstName}} {{ book.author.lastName }}</strong></span>
             <span> <em>{{ book.nbPages }} pages</em></span>
             <p></br> {{ book.resume }}</p>
@@ -17,9 +20,6 @@
             </div>
             <div class="margin"><a class="update" href="{{ path ('admin_book_update', {'id':book.id}) }}"> - Modifier le
                     livre - </a></div>
-           <div class="img">
-            <img src="{{ asset ('uploads/cover/') ~ book.cover}}" alt="" class="img-fluid">
-           </div>
             {% endfor %}
         </div>
 
